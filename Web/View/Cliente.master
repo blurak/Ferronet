@@ -1,0 +1,62 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="~/Controller/Cliente.master.cs" Inherits="View_Cliente" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+        .auto-style2 {
+            text-align: center;
+            width:33%
+        }
+        .auto-style3 {
+            text-align: center;
+            width: 33%;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <table class="auto-style1">
+            <tr>
+                <td class="auto-style2">
+                    <asp:Image ID="Image1" runat="server" Height="268px" ImageUrl="~/Images/banner.jpg" Width="737px" />
+                </td>
+            </tr>
+        </table>
+        <table class="auto-style1">
+            <tr>
+                <td class="auto-style2">
+                    <asp:Image ID="ICliente" runat="server" Width="737px" Height="62px" ImageUrl="~/Images/cliente.jpg" />
+                </td>
+            </tr>
+        </table>
+        <table class="auto-style1">
+            <tr>
+                <td class="auto-style3">
+                    <asp:ImageButton ID="IBHacerpedido" runat="server" Height="90px" ImageUrl="~/Images/botones/hacerpedido.jpg" PostBackUrl="~/View/HacerPedidoCliente.aspx" />
+                </td>
+                <td class="auto-style2">
+                    <asp:ImageButton ID="IBConsultarPedido" runat="server" Height="90px" ImageUrl="~/Images/botones/consultarpedido.jpg" PostBackUrl="~/View/ConsultarPedidoCliente.aspx" />
+                </td>
+                <td class="auto-style2">
+                    <asp:ImageButton ID="ImageButton3" runat="server" Height="90px" ImageUrl="~/Images/botones/cerrar sesion.jpg" OnClick="ImageButton3_Click" />
+                </td>
+            </tr>
+        </table>
+        <br />
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

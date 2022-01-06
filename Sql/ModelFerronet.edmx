@@ -1,0 +1,688 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ferronetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="controles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="control" Type="ntext" />
+          <Property Name="idioma" Type="ntext" />
+          <Property Name="id_idioma" Type="int" />
+          <Property Name="id_formulario" Type="int" />
+          <Property Name="texto" Type="ntext" />
+        </EntityType>
+        <EntityType Name="formulario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="ntext" />
+        </EntityType>
+        <EntityType Name="idioma">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="ntext" />
+          <Property Name="terminacion" Type="ntext" />
+        </EntityType>
+        <EntityType Name="autenticacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="ip" Type="varchar" MaxLength="100" />
+          <Property Name="mac" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_inicio" Type="datetime2" Precision="6" />
+          <Property Name="session" Type="ntext" />
+          <Property Name="fecha_fin" Type="datetime2" Precision="6" />
+        </EntityType>
+        <EntityType Name="categoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="ntext" />
+        </EntityType>
+        <EntityType Name="detalle_pedido">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="valor_unitario" Type="int" />
+          <Property Name="id_producto" Type="int" />
+          <Property Name="id_pedido" Type="int" />
+          <Property Name="session" Type="ntext" />
+          <Property Name="last_modified" Type="datetime2" Precision="6" />
+          <Property Name="valor_total" Type="int" />
+        </EntityType>
+        <EntityType Name="detalle_venta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="valor_unitario" Type="int" />
+          <Property Name="id_producto" Type="int" />
+          <Property Name="id_venta" Type="int" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="valor_total" Type="int" />
+          <Property Name="session" Type="ntext" />
+          <Property Name="last_modified" Type="datetime2" Precision="6" />
+        </EntityType>
+        <EntityType Name="pedido">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo_entrega" Type="ntext" />
+          <Property Name="direccion" Type="ntext" />
+          <Property Name="valor_total" Type="int" />
+          <Property Name="id_subsede" Type="int" />
+          <Property Name="id_usuario" Type="int" />
+          <Property Name="session" Type="ntext" />
+          <Property Name="last_modified" Type="datetime2" Precision="6" />
+        </EntityType>
+        <EntityType Name="producto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="precio" Type="float" />
+          <Property Name="descripcion" Type="ntext" />
+          <Property Name="imagen" Type="ntext" />
+          <Property Name="id_categoria" Type="int" />
+          <Property Name="session" Type="ntext" />
+          <Property Name="last_modified" Type="datetime2" Precision="6" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'ferronet.usuario.producto_sede' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="producto_sede">
+          <Property Name="id" Type="bigint" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="cantidadmin" Type="int" />
+          <Property Name="id_producto" Type="int" />
+          <Property Name="id_sede" Type="int" />
+          <Property Name="session" Type="ntext" />
+          <Property Name="last_modified" Type="datetime2" Precision="6" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>-->
+        <EntityType Name="producto_subsede">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="cantidadmin" Type="int" />
+          <Property Name="id_producto" Type="int" />
+          <Property Name="id_subsede" Type="int" />
+          <Property Name="session" Type="ntext" />
+          <Property Name="last_modified" Type="datetime2" Precision="6" />
+        </EntityType>
+        <EntityType Name="proveedores">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="ntext" />
+          <Property Name="correo" Type="ntext" />
+          <Property Name="telefono" Type="ntext" />
+          <Property Name="id_sede" Type="int" />
+          <Property Name="session" Type="ntext" />
+          <Property Name="last_modified" Type="datetime2" Precision="6" />
+          <Property Name="id_categoria" Type="int" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="ntext" />
+        </EntityType>
+        <EntityType Name="sede">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="ntext" />
+          <Property Name="ubicacion" Type="ntext" />
+          <Property Name="id_super" Type="int" />
+          <Property Name="session" Type="ntext" />
+          <Property Name="last_modified" Type="datetime2" Precision="6" />
+        </EntityType>
+        <EntityType Name="sub_sede">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="ntext" />
+          <Property Name="ubicacion" Type="ntext" />
+          <Property Name="id_admin" Type="int" />
+          <Property Name="id_cajero" Type="int" />
+          <Property Name="id_sede" Type="int" />
+          <Property Name="session" Type="ntext" />
+          <Property Name="last_modified" Type="datetime2" Precision="6" />
+        </EntityType>
+        <EntityType Name="token_recuperacion_usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="token" Type="ntext" />
+          <Property Name="fecha_creado" Type="datetime2" Precision="6" />
+          <Property Name="fecha_vigencia" Type="datetime2" Precision="6" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="ntext" />
+          <Property Name="usuario" Type="ntext" />
+          <Property Name="correo" Type="ntext" />
+          <Property Name="id_rol" Type="int" />
+          <Property Name="session" Type="ntext" />
+          <Property Name="last_modified" Type="datetime2" Precision="6" />
+          <Property Name="estado" Type="int" />
+          <Property Name="sesiones_activas" Type="int" />
+          <Property Name="sessiones_maximas" Type="int" />
+          <Property Name="intentos_incorrectos" Type="int" />
+          <Property Name="baneo" Type="datetime2" Precision="6" />
+          <Property Name="baneado" Type="bit" />
+        </EntityType>
+        <EntityType Name="ventas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_subsede" Type="int" />
+          <Property Name="session" Type="ntext" />
+          <Property Name="last_modified" Type="datetime2" Precision="6" />
+          <Property Name="valor_total" Type="int" />
+          <Property Name="id_usuario" Type="int" />
+          <Property Name="dia" Type="text" />
+          <Property Name="hora" Type="text" />
+        </EntityType>
+        <EntityContainer Name="ferronetModelStoreContainer">
+          <EntitySet Name="controles" EntityType="Self.controles" Schema="idioma" store:Type="Tables" />
+          <EntitySet Name="formulario" EntityType="Self.formulario" Schema="idioma" store:Type="Tables" />
+          <EntitySet Name="idioma" EntityType="Self.idioma" Schema="idioma" store:Type="Tables" />
+          <EntitySet Name="autenticacion" EntityType="Self.autenticacion" Schema="security" store:Type="Tables" />
+          <EntitySet Name="categoria" EntityType="Self.categoria" Schema="usuario" store:Type="Tables" />
+          <EntitySet Name="detalle_pedido" EntityType="Self.detalle_pedido" Schema="usuario" store:Type="Tables" />
+          <EntitySet Name="detalle_venta" EntityType="Self.detalle_venta" Schema="usuario" store:Type="Tables" />
+          <EntitySet Name="pedido" EntityType="Self.pedido" Schema="usuario" store:Type="Tables" />
+          <EntitySet Name="producto" EntityType="Self.producto" Schema="usuario" store:Type="Tables" />
+          <EntitySet Name="producto_subsede" EntityType="Self.producto_subsede" Schema="usuario" store:Type="Tables" />
+          <EntitySet Name="proveedores" EntityType="Self.proveedores" Schema="usuario" store:Type="Tables" />
+          <EntitySet Name="rol" EntityType="Self.rol" Schema="usuario" store:Type="Tables" />
+          <EntitySet Name="sede" EntityType="Self.sede" Schema="usuario" store:Type="Tables" />
+          <EntitySet Name="sub_sede" EntityType="Self.sub_sede" Schema="usuario" store:Type="Tables" />
+          <EntitySet Name="token_recuperacion_usuario" EntityType="Self.token_recuperacion_usuario" Schema="usuario" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="usuario" store:Type="Tables" />
+          <EntitySet Name="ventas" EntityType="Self.ventas" Schema="usuario" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ferronetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="controles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="control" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="idioma" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_idioma" Type="Int32" />
+          <Property Name="id_formulario" Type="Int32" />
+          <Property Name="texto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="formulario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="idioma">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="terminacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="autenticacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="ip" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="mac" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_inicio" Type="DateTime" Precision="6" />
+          <Property Name="session" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_fin" Type="DateTime" Precision="6" />
+        </EntityType>
+        <EntityType Name="categoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="detalle_pedido">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="valor_unitario" Type="Int32" />
+          <Property Name="id_producto" Type="Int32" />
+          <Property Name="id_pedido" Type="Int32" />
+          <Property Name="session" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="last_modified" Type="DateTime" Precision="6" />
+          <Property Name="valor_total" Type="Int32" />
+        </EntityType>
+        <EntityType Name="detalle_venta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="valor_unitario" Type="Int32" />
+          <Property Name="id_producto" Type="Int32" />
+          <Property Name="id_venta" Type="Int32" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="valor_total" Type="Int32" />
+          <Property Name="session" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="last_modified" Type="DateTime" Precision="6" />
+        </EntityType>
+        <EntityType Name="pedido">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo_entrega" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="valor_total" Type="Int32" />
+          <Property Name="id_subsede" Type="Int32" />
+          <Property Name="id_usuario" Type="Int32" />
+          <Property Name="session" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="last_modified" Type="DateTime" Precision="6" />
+        </EntityType>
+        <EntityType Name="producto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="precio" Type="Double" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_categoria" Type="Int32" />
+          <Property Name="session" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="last_modified" Type="DateTime" Precision="6" />
+        </EntityType>
+        <EntityType Name="producto_subsede">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="cantidadmin" Type="Int32" />
+          <Property Name="id_producto" Type="Int32" />
+          <Property Name="id_subsede" Type="Int32" />
+          <Property Name="session" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="last_modified" Type="DateTime" Precision="6" />
+        </EntityType>
+        <EntityType Name="proveedores">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="telefono" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_sede" Type="Int32" />
+          <Property Name="session" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="last_modified" Type="DateTime" Precision="6" />
+          <Property Name="id_categoria" Type="Int32" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sede">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ubicacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_super" Type="Int32" />
+          <Property Name="session" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="last_modified" Type="DateTime" Precision="6" />
+        </EntityType>
+        <EntityType Name="sub_sede">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ubicacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_admin" Type="Int32" />
+          <Property Name="id_cajero" Type="Int32" />
+          <Property Name="id_sede" Type="Int32" />
+          <Property Name="session" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="last_modified" Type="DateTime" Precision="6" />
+        </EntityType>
+        <EntityType Name="token_recuperacion_usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="token" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_creado" Type="DateTime" Precision="6" />
+          <Property Name="fecha_vigencia" Type="DateTime" Precision="6" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="usuario1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_rol" Type="Int32" />
+          <Property Name="session" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="last_modified" Type="DateTime" Precision="6" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="sesiones_activas" Type="Int32" />
+          <Property Name="sessiones_maximas" Type="Int32" />
+          <Property Name="intentos_incorrectos" Type="Int32" />
+          <Property Name="baneo" Type="DateTime" Precision="6" />
+          <Property Name="baneado" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ventas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_subsede" Type="Int32" />
+          <Property Name="session" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="last_modified" Type="DateTime" Precision="6" />
+          <Property Name="valor_total" Type="Int32" />
+          <Property Name="id_usuario" Type="Int32" />
+          <Property Name="dia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="hora" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="ferronetContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="controles" EntityType="Self.controles" />
+          <EntitySet Name="formulario" EntityType="Self.formulario" />
+          <EntitySet Name="idioma" EntityType="Self.idioma" />
+          <EntitySet Name="autenticacion" EntityType="Self.autenticacion" />
+          <EntitySet Name="categoria" EntityType="Self.categoria" />
+          <EntitySet Name="detalle_pedido" EntityType="Self.detalle_pedido" />
+          <EntitySet Name="detalle_venta" EntityType="Self.detalle_venta" />
+          <EntitySet Name="pedido" EntityType="Self.pedido" />
+          <EntitySet Name="producto" EntityType="Self.producto" />
+          <EntitySet Name="producto_subsede" EntityType="Self.producto_subsede" />
+          <EntitySet Name="proveedores" EntityType="Self.proveedores" />
+          <EntitySet Name="rol" EntityType="Self.rol" />
+          <EntitySet Name="sede" EntityType="Self.sede" />
+          <EntitySet Name="sub_sede" EntityType="Self.sub_sede" />
+          <EntitySet Name="token_recuperacion_usuario" EntityType="Self.token_recuperacion_usuario" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <EntitySet Name="ventas" EntityType="Self.ventas" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ferronetModelStoreContainer" CdmEntityContainer="ferronetContext">
+          <EntitySetMapping Name="controles">
+            <EntityTypeMapping TypeName="ferronetModel.controles">
+              <MappingFragment StoreEntitySet="controles">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="control" ColumnName="control" />
+                <ScalarProperty Name="idioma" ColumnName="idioma" />
+                <ScalarProperty Name="id_idioma" ColumnName="id_idioma" />
+                <ScalarProperty Name="id_formulario" ColumnName="id_formulario" />
+                <ScalarProperty Name="texto" ColumnName="texto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="formulario">
+            <EntityTypeMapping TypeName="ferronetModel.formulario">
+              <MappingFragment StoreEntitySet="formulario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="idioma">
+            <EntityTypeMapping TypeName="ferronetModel.idioma">
+              <MappingFragment StoreEntitySet="idioma">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="terminacion" ColumnName="terminacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="autenticacion">
+            <EntityTypeMapping TypeName="ferronetModel.autenticacion">
+              <MappingFragment StoreEntitySet="autenticacion">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="mac" ColumnName="mac" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="session" ColumnName="session" />
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categoria">
+            <EntityTypeMapping TypeName="ferronetModel.categoria">
+              <MappingFragment StoreEntitySet="categoria">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalle_pedido">
+            <EntityTypeMapping TypeName="ferronetModel.detalle_pedido">
+              <MappingFragment StoreEntitySet="detalle_pedido">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="valor_unitario" ColumnName="valor_unitario" />
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="id_pedido" ColumnName="id_pedido" />
+                <ScalarProperty Name="session" ColumnName="session" />
+                <ScalarProperty Name="last_modified" ColumnName="last_modified" />
+                <ScalarProperty Name="valor_total" ColumnName="valor_total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalle_venta">
+            <EntityTypeMapping TypeName="ferronetModel.detalle_venta">
+              <MappingFragment StoreEntitySet="detalle_venta">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="valor_unitario" ColumnName="valor_unitario" />
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="id_venta" ColumnName="id_venta" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="valor_total" ColumnName="valor_total" />
+                <ScalarProperty Name="session" ColumnName="session" />
+                <ScalarProperty Name="last_modified" ColumnName="last_modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pedido">
+            <EntityTypeMapping TypeName="ferronetModel.pedido">
+              <MappingFragment StoreEntitySet="pedido">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tipo_entrega" ColumnName="tipo_entrega" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="valor_total" ColumnName="valor_total" />
+                <ScalarProperty Name="id_subsede" ColumnName="id_subsede" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="session" ColumnName="session" />
+                <ScalarProperty Name="last_modified" ColumnName="last_modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="producto">
+            <EntityTypeMapping TypeName="ferronetModel.producto">
+              <MappingFragment StoreEntitySet="producto">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+                <ScalarProperty Name="session" ColumnName="session" />
+                <ScalarProperty Name="last_modified" ColumnName="last_modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="producto_subsede">
+            <EntityTypeMapping TypeName="ferronetModel.producto_subsede">
+              <MappingFragment StoreEntitySet="producto_subsede">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="cantidadmin" ColumnName="cantidadmin" />
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="id_subsede" ColumnName="id_subsede" />
+                <ScalarProperty Name="session" ColumnName="session" />
+                <ScalarProperty Name="last_modified" ColumnName="last_modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="proveedores">
+            <EntityTypeMapping TypeName="ferronetModel.proveedores">
+              <MappingFragment StoreEntitySet="proveedores">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="id_sede" ColumnName="id_sede" />
+                <ScalarProperty Name="session" ColumnName="session" />
+                <ScalarProperty Name="last_modified" ColumnName="last_modified" />
+                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rol">
+            <EntityTypeMapping TypeName="ferronetModel.rol">
+              <MappingFragment StoreEntitySet="rol">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sede">
+            <EntityTypeMapping TypeName="ferronetModel.sede">
+              <MappingFragment StoreEntitySet="sede">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+                <ScalarProperty Name="id_super" ColumnName="id_super" />
+                <ScalarProperty Name="session" ColumnName="session" />
+                <ScalarProperty Name="last_modified" ColumnName="last_modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sub_sede">
+            <EntityTypeMapping TypeName="ferronetModel.sub_sede">
+              <MappingFragment StoreEntitySet="sub_sede">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+                <ScalarProperty Name="id_admin" ColumnName="id_admin" />
+                <ScalarProperty Name="id_cajero" ColumnName="id_cajero" />
+                <ScalarProperty Name="id_sede" ColumnName="id_sede" />
+                <ScalarProperty Name="session" ColumnName="session" />
+                <ScalarProperty Name="last_modified" ColumnName="last_modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="token_recuperacion_usuario">
+            <EntityTypeMapping TypeName="ferronetModel.token_recuperacion_usuario">
+              <MappingFragment StoreEntitySet="token_recuperacion_usuario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="fecha_creado" ColumnName="fecha_creado" />
+                <ScalarProperty Name="fecha_vigencia" ColumnName="fecha_vigencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="ferronetModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="usuario1" ColumnName="usuario" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="session" ColumnName="session" />
+                <ScalarProperty Name="last_modified" ColumnName="last_modified" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="sesiones_activas" ColumnName="sesiones_activas" />
+                <ScalarProperty Name="sessiones_maximas" ColumnName="sessiones_maximas" />
+                <ScalarProperty Name="intentos_incorrectos" ColumnName="intentos_incorrectos" />
+                <ScalarProperty Name="baneo" ColumnName="baneo" />
+                <ScalarProperty Name="baneado" ColumnName="baneado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ventas">
+            <EntityTypeMapping TypeName="ferronetModel.ventas">
+              <MappingFragment StoreEntitySet="ventas">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_subsede" ColumnName="id_subsede" />
+                <ScalarProperty Name="session" ColumnName="session" />
+                <ScalarProperty Name="last_modified" ColumnName="last_modified" />
+                <ScalarProperty Name="valor_total" ColumnName="valor_total" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="dia" ColumnName="dia" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

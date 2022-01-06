@@ -1,0 +1,161 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="~/Controller/principal.master.cs" Inherits="View_principal" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        
+        .auto-style1 {
+            width: 100%;
+        }
+        .auto-style3 {
+            text-align: center;
+            width: 956px;
+        }
+        .auto-style10 {
+            width: 100%;
+            text-align: center;
+        }
+        .auto-style11 {
+            width: 100%;
+            height: 44px;
+        }
+       
+      
+        * {
+             padding: 0;
+            margin: 0;
+        }
+
+      
+
+        #header {
+                margin:auto;
+				width:650px;
+				font-family:Arial, Helvetica, sans-serif;
+                position:center;
+        }
+        			ul, ol {
+				list-style:none;
+			}
+			
+			.nav > li {
+				float:left;
+			}
+			
+			.nav li a {
+				background-color:#000;
+				color:#fff;
+				text-decoration:none;
+				padding:10px 12px;
+				display:block;
+                width:100px;
+			}
+			
+			.nav li a:hover {
+				background-color:#434343;
+			}
+			
+			.nav li ul {
+				display:none;
+				position:absolute;
+				min-width:140px;
+			}
+			
+			.nav li:hover > ul {
+				display:block;
+			}
+			
+			.nav li ul li {
+				position:relative;
+			}
+			
+			.nav li ul li ul {
+				right:-140px;
+				top:0px;
+			}
+        
+        .auto-style12 {
+            width: 800px;
+            height: 36px;
+        }
+        
+        .auto-style13 {
+            text-align: left;
+        }
+        .auto-style14 {
+            font-size: medium;
+        }
+        
+    </style>
+    
+
+</head>
+<body>
+   
+    <form id="form1" runat="server">
+    <div>
+        <table class="auto-style1">
+            <tr>
+                <td class="auto-style10">
+                    <table class="auto-style1">
+                        <tr>
+                            <td class="auto-style13">
+                                <%-- " AppendDataBoundItems="true">
+        <asp:ListItem Value="0">&lt;Seleccione un Item&gt;</asp:ListItem> --%>
+                                <asp:DropDownList ID="DDIdioma" runat="server" OnSelectedIndexChanged="DDIdioma_SelectedIndexChanged" AppendDataBoundItems="True" DataSourceID="ODSIdiomasRegistrados" DataTextField="Cliente" DataValueField="Direccion" AutoPostBack="True">
+                                <asp:ListItem Value="0">Cambiar idioma</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Guardar" />
+                                <asp:ObjectDataSource ID="ODSIdiomasRegistrados" runat="server" SelectMethod="obtenerIdiomasRegitrados" TypeName="Logica.LVisitante"></asp:ObjectDataSource>
+                                <br />
+                            </td>
+                        </tr>
+                    </table>
+                    <asp:Image ID="Image2" runat="server" Height="268px" ImageUrl="~/Images/banner.jpg" Width="737px" />
+                    <asp:HyperLink ID="HPManual" runat="server" NavigateUrl="~/Images/Documentos/Manual-de-usuario-Ferronet.pdf">Manual de usuario</asp:HyperLink>
+                &nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style3">
+                    &nbsp;</td>
+            </tr>
+        </table>
+        <table class="auto-style11">
+            <tr>
+                <td>
+                    <div id="header" class="auto-style12">
+                   
+                    
+                    <ul class="nav">
+                        <li><a id="inicio" href="Principal.aspx" runat="server">Inicio</a></li>
+                        <li><a id="productos" href="Productos.aspx" runat="server" >Productos</a></li>
+                        <li><a id="registrarse" href="registrarse.aspx" runat="server">Registrarse</a></li>
+                        <li><a id="iniciarsesion" href="IniciarSesion.aspx" runat="server" class="auto-style14">Iniciar sesion</a></li>
+                        <li><a id="contactenos" href="Contactenos.aspx" runat="server" >Contactenos</a></li>
+                    </ul>
+                    
+                
+                        </div>
+                  </td>
+            </tr>
+        </table>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+        <br />
+    </div>
+        <p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Button ID="BTGames" runat="server" BackColor="#FFB56A" Height="49px" OnClick="BT_registrar_Click" Text="Noticias GamesCol" CssClass="auto-style14" ValidationGroup="BotonRegistrar" Width="164px" PostBackUrl="~/View/GamesCol.aspx" />
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Button ID="BTUniempleo" runat="server" BackColor="#FFB56A" Height="49px" OnClick="BT_registrar_Click" Text="Top Empresas Mejor Puntuadas" CssClass="auto-style14" ValidationGroup="BotonRegistrar" Width="251px" PostBackUrl="~/View/UniempleOfer.aspx" />
+                                </p>
+    </form>
+</body>
+</html>

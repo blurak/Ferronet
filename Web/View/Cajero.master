@@ -1,0 +1,82 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="~/Controller/Cajero.master.cs" Inherits="View_Cajero" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+        .auto-style2 {
+            width: 100%;
+        }
+        .auto-style3 {
+            width: 25%;
+            text-align: center;
+        }
+        .auto-style5 {
+            width: 25%;
+            text-align: center;
+        }
+        .auto-style6 {
+            text-align: center;
+        }
+        .auto-style7 {
+            width: 25%;
+            text-align: center;
+        }
+        .auto-style8 {
+            font-size: large;
+        }
+    </style>
+     <script type="text/javascript" src="javascript/subsede.js"></script>
+     <script type="text/javascript" src="javascript/sede.js"></script>
+     <script type="text/javascript" src="javascript/usuario.js"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <table class="auto-style1">
+            <tr>
+                <td class="auto-style6">
+                    <asp:Image ID="Image1" runat="server" Height="268px" ImageUrl="~/Images/banner.jpg" Width="737px" />
+                </td>
+            </tr>
+        </table>
+        <table class="auto-style1">
+            <tr>
+                <td class="auto-style6">
+                    <asp:Image ID="ICajero" runat="server" ImageUrl="~/Images/cajero.jpg" Width="737px" />
+                    <asp:Button ID="BTNPlato" runat="server" BackColor="#EBB462" CssClass="auto-style8" ForeColor="Black" Height="42px" OnClick="BTNPlato_Click" Text="¿Hora de almorzar?" Width="189px" />
+                </td>
+            </tr>
+        </table>
+        <table class="auto-style2">
+            <tr>
+                <td class="auto-style3">
+                    <asp:ImageButton ID="IBRegistrarVentas" runat="server" Height="90px" ImageUrl="~/Images/botones/registrarventas.jpg" PostBackUrl="~/View/RegistrarVentaConGridview.aspx" />
+                </td>
+                <td class="auto-style3">
+                    <asp:ImageButton ID="IBPedidos" runat="server" Height="90px" ImageUrl="~/Images/botones/pedidos.jpg" PostBackUrl="~/View/PedidosCajero.aspx" />
+                </td>
+                <td class="auto-style7">
+                    <asp:ImageButton ID="IBInventario" runat="server" Height="90px" ImageUrl="~/Images/botones/inventario.jpg" PostBackUrl="~/View/InventarioSubsedeCajero.aspx" />
+                </td>
+                <td class="auto-style5">
+                    <asp:ImageButton ID="ImageButton4" runat="server" Height="90px" ImageUrl="~/Images/botones/cerrar sesion.jpg" OnClick="ImageButton4_Click" />
+                </td>
+            </tr>
+        </table>
+        <br />
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

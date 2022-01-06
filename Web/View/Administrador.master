@@ -1,0 +1,78 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="~/Controller/Administrador.master.cs" Inherits="View_Administrador" %>
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+        .auto-style3 {
+            width: 20%;
+        }
+        .auto-style4 {
+            width: 20%;
+        }
+        .auto-style5 {
+            width: 20%;
+        }
+        .auto-style6 {
+            width: 20%;
+        }
+        .auto-style8 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <p>
+            <table class="auto-style1">
+                <tr>
+                    <td class="auto-style8">
+                        <asp:Image ID="Image1" runat="server" Height="268px" ImageUrl="~/Images/banner.jpg" Width="737px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style8">
+                        <br />
+                        <br />
+                        <asp:Image ID="IAdministrador" runat="server" ImageUrl="~/Images/admin.jpg" Width="737px" />
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <table class="auto-style1">
+                <tr>
+                    <td class="auto-style3">
+                        <asp:ImageButton ID="IBInventarioActual" runat="server" Height="90px" ImageUrl="~/Images/botones/inventarioactual.jpg" PostBackUrl="~/View/InventarioActualSubsede.aspx" Width="230px" />
+                    </td>
+                    <td class="auto-style4">
+                        <asp:ImageButton ID="IBConsultarVentas" runat="server" Height="90px" ImageUrl="~/Images/botones/consultarventas.jpg" PostBackUrl="~/View/ConsultaVentasAdministrador.aspx" Width="230px" />
+                    </td>
+                    <td class="auto-style5">
+                        <asp:ImageButton ID="IBConsultarPedidos" runat="server" Height="90px" ImageUrl="~/Images/botones/consultarpedidos.jpg" PostBackUrl="~/View/ConsultaPedidosAdministrador.aspx" Width="230px" />
+                    </td>
+                    <td class="auto-style6">
+                        <asp:ImageButton ID="IBCajeroAsignado" runat="server" Height="90px" ImageUrl="~/Images/botones/cajeroasignado.jpg" PostBackUrl="~/View/CajeroAsignado.aspx" Width="230px" />
+                    </td>
+                    <td>
+                        <asp:ImageButton ID="BtnCerrarSesion" runat="server" Height="90px" ImageUrl="~/Images/botones/cerrar sesion.jpg" OnClick="BtnCerrarSesion_Click"  />
+                    </td>
+                </tr>
+            </table>
+        </p>
+    <div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

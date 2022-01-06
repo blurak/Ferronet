@@ -1,0 +1,97 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="~/Controller/Superadmin.master.cs" Inherits="View_Superadmin" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+        .auto-style2 {
+            margin-top: 4px;
+        }
+        .auto-style7 {
+            width: 100%;
+        }
+        .auto-style8 {
+            width: 20%;
+            height: 28px;
+            text-align: center;
+        }
+        .auto-style9 {
+            text-align: center;
+        }
+        .auto-style10 {
+            text-align: center;
+            width: 100%;
+        }
+        .auto-style11 {
+            width: 100%;
+        }
+        </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <br />
+        <br />
+        <table class="auto-style11">
+            <tr>
+                <td class="auto-style9">
+                    <asp:Image ID="Image1" runat="server" CssClass="auto-style2" ImageUrl="~/Images/banner.jpg" Height="268px" Width="737px" />
+                </td>
+            </tr>
+        </table>
+        <table class="auto-style7">
+            <tr>
+                <td class="auto-style10">
+                    <br />
+                    <br />
+                    <asp:Image ID="ISuperAdmin" runat="server" ImageUrl="~/Images/super.jpg" Width="737px" />
+                </td>
+            </tr>
+        </table>
+        <table class="auto-style1">
+            <tr>
+                <td class="auto-style8">
+                    <asp:ImageButton ID="IBAdministracionSubsede" runat="server" Height="90px" ImageUrl="~/Images/botones/administrasub.jpg" PostBackUrl="~/View/AdministracionDeSubsedes.aspx" Width="220px" />
+                </td>
+                <td class="auto-style8">
+                    <asp:ImageButton ID="IBInventarioPrincipal" runat="server" Height="90px" ImageUrl="~/Images/botones/inventarioprin.jpg" PostBackUrl="~/View/InventarioSede.aspx" Width="220px" />
+                </td>
+                <td class="auto-style8">
+                    <asp:ImageButton ID="IBConsultas" runat="server" Height="90px" ImageUrl="~/Images/botones/consultas.jpg" PostBackUrl="~/View/Consultas.aspx" Width="220px" />
+                </td>
+                <td class="auto-style8">
+                    <asp:ImageButton ID="IBProveedores" runat="server" Height="90px" ImageUrl="~/Images/botones/proveedores.jpg" PostBackUrl="~/View/Proveedores.aspx" Width="220px" />
+                </td>
+                <td class="auto-style8">
+                    <asp:ImageButton ID="IBMultidioma" runat="server" ImageUrl="~/Images/botones/multiidioma.png" PostBackUrl="~/View/AgregarIdioma.aspx" Width="80px" />
+                </td>
+                <td class="auto-style8">
+                    <asp:ImageButton ID="IBConfiguracion" runat="server" Height="66px" ImageUrl="~/Images/botones/configuracion.jpg" PostBackUrl="~/View/CambiarSesionesMaximas.aspx" Width="80px" />
+                </td>
+                <td class="auto-style8">
+                    <asp:ImageButton ID="ImageButton5" runat="server" Height="90px" ImageUrl="~/Images/botones/cerrar sesion.jpg" OnClick="ImageButton5_Click" />
+                </td>
+            </tr>
+        </table>
+        <br />
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+            <p>
+                <br />
+            </p>
+            <p>
+            </p>
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>
